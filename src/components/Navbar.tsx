@@ -47,6 +47,7 @@ const Boton = styled.button`
     color: white;
     border: none;
     padding: 10px;
+    width: 100px;
     border-radius: 10px;
     text-align: center;
     font-size: 16px;
@@ -55,6 +56,7 @@ const Boton = styled.button`
     &:hover {
         background-color: #1856de;
     }
+    
 `;
 
 function Navbar() {
