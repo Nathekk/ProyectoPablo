@@ -13,7 +13,7 @@ const ContenedorTabla = styled.table`
         border: 1px solid #dddddd;
         text-align: center;
         padding: 8px;
-        
+
     }
 
     th {
@@ -53,8 +53,8 @@ const BotonEliminar = styled(BotonAccion)`
     }
 `;
 const AccionesFlex = styled.div`
-  display: flex;
-  gap: 12px; 
+    display: flex;
+    gap: 12px;
     justify-content: center;
     align-items: center;
 `;
@@ -79,15 +79,18 @@ function ListaJuegos() {
                     <td>Minecraft</td>
                     <td>2013</td>
                     <td>maincra</td>
-                    <AccionesFlex>
-                        <BotonEditar type="button" onClick={() => navigate(`/juegos/editar`)}>
-                            {/*<BotonEditar type="button" onClick={() => navigate(`/juegos/${juego.id}/editar`)}> lo añado cuando lo tenga*/}
-                            editar
-                        </BotonEditar>
-                        <BotonEliminar>
-                            eliminar
-                        </BotonEliminar>
-                    </AccionesFlex>
+                    <td>
+                        <AccionesFlex>
+                            <BotonEditar type="button" onClick={() => navigate(`/juegos/editar`)}>
+                                {/*<BotonEditar type="button" onClick={() => navigate(`/juegos/${juego.id}/editar`)}> lo añado cuando lo tenga*/}
+                                editar
+                            </BotonEditar>
+                            <BotonEliminar>
+                                eliminar
+                            </BotonEliminar>
+                        </AccionesFlex>
+                    </td>
+
                 </TablaTR>
                 </tbody>
             </ContenedorTabla>

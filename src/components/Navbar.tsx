@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
+
 import logo from "../media/logo.jpg";
+import { Link } from "react-router";
 
 const ContenedorNav = styled.nav`
     font-family: Arial, serif;
@@ -25,11 +27,10 @@ const Links = styled.ul`
     padding: 0;
 `;
 
-const Link = styled.a`
+const Enlace = styled(Link)`
     text-decoration: none;
     margin: 10px;
     color: #444444;
-    transition: color 0.2s;
 
     &:hover {
         color: #2563eb;
@@ -59,16 +60,16 @@ function Navbar() {
             <Logo src={logo} alt="Logo de mi proyecto"/>
             <ContenedorDerecha>
                 <Links>
-                    <li><Link href="/">Inicio</Link></li>
-                    <li><Link href="/juegos">Videojuegos</Link></li>
-                    <li><Link href="/usuarios">Usuarios</Link></li>
+                    <li><Enlace to="/">Inicio</Enlace></li>
+                    <li><Enlace to="/juegos">Videojuegos</Enlace></li>
+                    <li><Enlace to="/usuarios">Usuarios</Enlace></li>
                 </Links>
 
-                <Link href="/login">
+                <Enlace to="/login">
                     <Boton>
                         Login
                     </Boton>
-                </Link>
+                </Enlace>
             </ContenedorDerecha>
         </ContenedorNav>
     );
