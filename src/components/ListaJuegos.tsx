@@ -1,10 +1,20 @@
 import styled from "@emotion/styled";
 import {useNavigate} from 'react-router';
 
+const Contenedor = styled.div`
+    font-family: Arial, serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    padding: 0 20px;
+`;
+
 const ContenedorTabla = styled.table`
     font-family: Arial, serif;
+    background-color: white;
     border-collapse: collapse;
-    width: 100%;
+    width: 70%;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.29);
@@ -17,7 +27,7 @@ const ContenedorTabla = styled.table`
     }
 
     th {
-        background-color: #1e1e2f;
+        background-color: #153059;
         color: white;
     }
 `;
@@ -28,19 +38,20 @@ const TablaTR = styled.tr`
 `;
 
 const BotonAccion = styled.button`
+    width: 30%;
     color: white;
     border: none;
-    padding: 7px;
+    padding: 10px;
     border-radius: 10px;
     cursor: pointer;
 `;
 
 const BotonEditar = styled(BotonAccion)`
-    background-color: #4f46e5;
+    background-color: #2563eb;
     color: white;
 
     &:hover {
-        background-color: #342ad3;
+        background-color: #1856de;
     }
 `;
 
@@ -65,35 +76,37 @@ function ListaJuegos() {
     const navigate = useNavigate();
     return (
         <>
-            <ContenedorTabla>
-                <thead>
-                <TablaTR>
-                    <th>Titulo</th>
-                    <th>Año</th>
-                    <th>Género</th>
-                    <th>Acciones</th>
-                </TablaTR>
-                </thead>
-                <tbody>
-                <TablaTR>
-                    <td>Minecraft</td>
-                    <td>2013</td>
-                    <td>maincra</td>
-                    <td>
-                        <AccionesFlex>
-                            <BotonEditar type="button" onClick={() => navigate(`/juegos/editar`)}>
-                                {/*<BotonEditar type="button" onClick={() => navigate(`/juegos/${juego.id}/editar`)}> lo añado cuando lo tenga*/}
-                                editar
-                            </BotonEditar>
-                            <BotonEliminar>
-                                eliminar
-                            </BotonEliminar>
-                        </AccionesFlex>
-                    </td>
+            <Contenedor>
+                <ContenedorTabla>
+                    <thead>
+                    <TablaTR>
+                        <th>Titulo</th>
+                        <th>Año</th>
+                        <th>Género</th>
+                        <th>Acciones</th>
+                    </TablaTR>
+                    </thead>
+                    <tbody>
+                    <TablaTR>
+                        <td>Minecraft</td>
+                        <td>2013</td>
+                        <td>maincra</td>
+                        <td>
+                            <AccionesFlex>
+                                <BotonEditar type="button" onClick={() => navigate(`/juegos/editar`)}>
+                                    {/*<BotonEditar type="button" onClick={() => navigate(`/juegos/${juego.id}/editar`)}> lo añado cuando lo tenga*/}
+                                    Editar
+                                </BotonEditar>
+                                <BotonEliminar>
+                                    Eliminar
+                                </BotonEliminar>
+                            </AccionesFlex>
+                        </td>
 
-                </TablaTR>
-                </tbody>
-            </ContenedorTabla>
+                    </TablaTR>
+                    </tbody>
+                </ContenedorTabla>
+            </Contenedor>
         </>
     );
 }

@@ -7,7 +7,6 @@ const ContenedorNav = styled.nav`
     font-family: Arial, serif;
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
     padding: 20px;
     align-items: center;
     background-color: white;
@@ -52,6 +51,10 @@ const Boton = styled.button`
     text-align: center;
     font-size: 16px;
     cursor: pointer;
+    
+    &:hover {
+        background-color: #1856de;
+    }
 `;
 
 function Navbar() {
