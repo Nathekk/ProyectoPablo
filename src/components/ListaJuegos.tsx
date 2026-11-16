@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import {useNavigate} from 'react-router';
+import {Link, useNavigate} from 'react-router';
 
 const Contenedor = styled.div`
     font-family: Arial, serif;
@@ -70,12 +70,46 @@ const AccionesFlex = styled.div`
     align-items: center;
 `;
 
+const Enlace = styled(Link)`
+    text-decoration: none;
+    margin: 10px;
+    color: #444444;
+
+    &:hover {
+        color: #2563eb;
+    }
+`;
+
+const Boton = styled.button`
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 50px;
+    width: 200px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: #1856de;
+    }
+    
+`;
+
 //BOTONES HACER LUEGO, EDITAR Y ELIMINAR
 
 function ListaJuegos() {
     const navigate = useNavigate();
     return (
         <>
+            <Enlace to="/juegos/addJuego">
+                <Boton>
+                    Añadir Juego
+                </Boton>
+            </Enlace>
             <Contenedor>
                 <ContenedorTabla>
                     <thead>

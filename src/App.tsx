@@ -6,6 +6,8 @@ import Login from "./pages/Login.tsx";
 import Footer from "./components/Footer.tsx";
 import styled from "@emotion/styled";
 import Registro from "./pages/Registro.tsx";
+import FormularioJuego from "./components/FormularioJuego.tsx";
+import ListaUsuarios from "./components/ListaUsuarios.tsx";
 
 function App() {
     const Pagina = styled.div`
@@ -29,9 +31,9 @@ function App() {
                         <Route path="/juegos" element={<ListaJuegos/>}/>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/registro" element={<Registro/>}/>
-                        {/*            <Route path="/juegos/nueva" element={<NuevoJuego />} />
-            <Route path="/usuarios/:id/editar" element={<ListaUsuarios />} />
-            <Route path="/perfil/:id" element={<Perfil/>} />
+                        <Route path="/juegos/addJuego" element={<FormularioJuego/>}/>
+                        <Route path="/usuarios" element={<ListaUsuarios/>}/>
+                        {/*            <Route path="/perfil/:id" element={<Perfil/>} />
             <Route path="*" element={<PaginaNoEncontrada />} />*/}
                     </Routes>
                 </Contenido>
