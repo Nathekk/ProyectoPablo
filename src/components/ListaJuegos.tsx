@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import {Link, useNavigate} from 'react-router';
+import type {RespuestaJuegos} from "../Typescript/Videojuego.ts";
+import {useGet} from "../hooks/useGet.ts"
 
 const Contenedor = styled.div`
     font-family: Arial, serif;
@@ -92,52 +94,58 @@ const Boton = styled.button`
     text-align: center;
     font-size: 16px;
     cursor: pointer;
-    
+
     &:hover {
         background-color: #1856de;
     }
-    
-`;
 
-//BOTONES HACER LUEGO, EDITAR Y ELIMINAR
+`;
 
 function ListaJuegos() {
     const navigate = useNavigate();
+
+    const {data, isLoading, error} =
+        useGet<RespuestaJuegos>("http://localhost:3000/juegos/");
+    if (isLoading) return <p>Cargando...</p>;
+    if (error) return <p>Error: {error}</p>;
+
     return (
         <>
             <Enlace to="/juegos/addJuego">
-                <Boton>
-                    Añadir Juego
-                </Boton>
+                <Boton>Añadir Juego</Boton>
             </Enlace>
             <Contenedor>
                 <ContenedorTabla>
                     <thead>
                     <TablaTR>
-                        <th>Titulo</th>
-                        <th>Año</th>
+                        <th>Título</th>
                         <th>Género</th>
+                        <th>Plataformas</th>
+                        <th>Precio</th>
+                        <th>Puntuación</th>
                         <th>Acciones</th>
                     </TablaTR>
                     </thead>
                     <tbody>
-                    <TablaTR>
-                        <td>Minecraft</td>
-                        <td>2013</td>
-                        <td>maincra</td>
-                        <td>
-                            <AccionesFlex>
-                                <BotonEditar type="button" onClick={() => navigate(`/juegos/editar`)}>
-                                    {/*<BotonEditar type="button" onClick={() => navigate(`/juegos/${juego.id}/editar`)}> lo añado cuando lo tenga*/}
-                                    Editar
-                                </BotonEditar>
-                                <BotonEliminar>
-                                    Eliminar
-                                </BotonEliminar>
-                            </AccionesFlex>
-                        </td>
-
-                    </TablaTR>
+                    {data?.results.map((juego) => (
+                        <TablaTR key={juego.id}>
+                            <td>{juego.titulo}</td>
+                            <td>{juego.genero}</td>
+                            <td>{juego.plataformas}</td>
+                            <td>{juego.precio} €</td>
+                            <td>{juego.puntuacion}</td>
+                            <td>
+                                <AccionesFlex>
+                                    <BotonEditar type="button" onClick={() => navigate(`/juegos/editar`)}>
+                                        Editar
+                                    </BotonEditar>
+                                    <BotonEliminar type="button">
+                                        Eliminar
+                                    </BotonEliminar>
+                                </AccionesFlex>
+                            </td>
+                        </TablaTR>
+                    ))}
                     </tbody>
                 </ContenedorTabla>
             </Contenedor>
