@@ -32,6 +32,7 @@ function App() {
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/registro" element={<Registro/>}/>
                         <Route path="/juegos/addJuego" element={<FormularioJuego/>}/>
+                        <Route path="/juegos/editar/:id" element={<FormularioJuego/>}/>
                         <Route path="/usuarios" element={<ListaUsuarios/>}/>
                         {/*            <Route path="/perfil/:id" element={<Perfil/>} />
             <Route path="*" element={<PaginaNoEncontrada />} />*/}

@@ -136,7 +136,7 @@ function ListaJuegos() {
                             <td>{juego.puntuacion}</td>
                             <td>
                                 <AccionesFlex>
-                                    <BotonEditar type="button" onClick={() => navigate(`/juegos/editar`)}>
+                                    <BotonEditar type="button" onClick={() => navigate(`/juegos/editar/${juego.id}`)}>
                                         Editar
                                     </BotonEditar>
                                     <BotonEliminar type="button">
