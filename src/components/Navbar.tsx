@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import logo from "../media/logo.jpg";
+import logo from "../assets/logo.png";
 import { Link } from "react-router";
 
 const ContenedorNav = styled.nav`
@@ -58,11 +58,25 @@ const Boton = styled.button`
     }
     
 `;
+const Marca = styled(Link)`
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+`;
+const NombreMarca = styled.span`
+    font-size: 22px;
+    font-weight: bold;
+    color: #153059;
+`;
 
 function Navbar() {
     return (
         <ContenedorNav>
-            <Logo src={logo} alt="Logo de mi proyecto"/>
+            <Marca to="/inicio">
+                <Logo src={logo} alt="Logo de mi proyecto"/>
+                <NombreMarca>GameAdmin</NombreMarca>
+            </Marca>
             <ContenedorDerecha>
                 <Links>
                     <li><Enlace to="/">Inicio</Enlace></li>
