@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import {Link, useNavigate} from 'react-router';
 import type {RespuestaJuegos} from "../Typescript/Videojuego.ts";
 import {useGet} from "../hooks/useGet.ts"
+import iconoCarga from "../assets/carga.gif";
 
 const Contenedor = styled.div`
     font-family: Arial, serif;
@@ -100,13 +101,19 @@ const Boton = styled.button`
     }
 
 `;
+const ImagenCarga = styled.img`
+    width: 80px;
+    height: auto;
+    display: block;
+    margin-top: 50px;
+`;
 
 function ListaJuegos() {
     const navigate = useNavigate();
 
     const {data, isLoading, error} =
         useGet<RespuestaJuegos>("http://localhost:3000/juegos/");
-    if (isLoading) return <p>Cargando...</p>;
+    if (isLoading) return <ImagenCarga src={iconoCarga} alt="Cargando..."/>;
     if (error) return <p>Error: {error}</p>;
 
     return (
@@ -131,7 +138,7 @@ function ListaJuegos() {
                         <TablaTR key={juego.id}>
                             <td>{juego.titulo}</td>
                             <td>{juego.genero}</td>
-                            <td>{juego.plataformas}</td>
+                            <td>{juego.plataformas.join(", ")}</td>
                             <td>{juego.precio} €</td>
                             <td>{juego.puntuacion}</td>
                             <td>
