@@ -1,6 +1,7 @@
 import {useGet} from "../hooks/useGet";
 import type {RespuestaJuegos} from "../Typescript/Videojuego";
 import styled from "@emotion/styled";
+import Cargando from "./Cargando.tsx";
 
 function ContadorJuegos() {
     const Contenedor = styled.div`
@@ -35,7 +36,7 @@ function ContadorJuegos() {
     const {data, isLoading, error} =
         useGet<RespuestaJuegos>("http://localhost:3000/juegos/");
 
-    if (isLoading) return <p>Cargando...</p>;
+    if (isLoading) return <Cargando/>;
     if (error) return <p>Error: {error}</p>;
 
     const totalJuegos = data?.results.length ?? 0;
