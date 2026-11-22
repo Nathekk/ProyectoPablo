@@ -4,6 +4,7 @@ import type {RespuestaJuegos} from "../Typescript/Videojuego.ts";
 import {useGet} from "../hooks/useGet.ts"
 import {useState} from "react";
 import Cargando from "./Cargando.tsx";
+import Paginacion from "./Paginacion.tsx";
 
 const Contenedor = styled.div`
     font-family: Arial, serif;
@@ -113,62 +114,82 @@ const Buscador = styled.input`
     box-sizing: border-box;
 `;
 
+const URL_MONGO = "http://localhost:3000";
+
 function ListaJuegos() {
     const navigate = useNavigate();
     const [busqueda, setBusqueda] = useState("");
+    const [paginaUrl, setPaginaUrl] = useState<string | null>(null);
+    const [pagina, setPagina] = useState(1);
 
-    const {data, isLoading, error} = useGet<RespuestaJuegos>(
-        `http://localhost:3000/juegos/?q=${encodeURIComponent(busqueda.trim())}`
-    );
+    const urlInicial = `${URL_MONGO}/juegos?q=${encodeURIComponent(busqueda.trim())}&page=1&limit=20`;
+    const {data, isLoading, error} = useGet<RespuestaJuegos>(paginaUrl ?? urlInicial);
 
+    const Pagina = (url: string, nuevaPagina: number) => {
+        setPaginaUrl(new URL(url, URL_MONGO).toString());
+        setPagina(nuevaPagina);
+    };
+
+    const alBuscar = (texto: string) => {
+        setBusqueda(texto);
+        setPaginaUrl(null);
+        setPagina(1);
+    };
     return (
         <>
             <Enlace to="/juegos/addJuego">
                 <Boton>Añadir Juego</Boton>
             </Enlace>
             <Buscador type="text" placeholder="Buscar por título" value={busqueda}
-                      onChange={(e) => setBusqueda(e.target.value)}/>
+                      onChange={(e) => alBuscar(e.target.value)}/>
             {isLoading ? (
                 <Cargando/>
             ) : error ? (
                 <p>Error: {error}</p>
             ) : (
-                <Contenedor>
-                    <ContenedorTabla>
-                        <thead>
-                        <TablaTR>
-                            <th>Título</th>
-                            <th>Género</th>
-                            <th>Plataformas</th>
-                            <th>Precio</th>
-                            <th>Puntuación</th>
-                            <th>Acciones</th>
-                        </TablaTR>
-                        </thead>
-                        <tbody>
-                        {data?.results.map((juego) => (
-                            <TablaTR key={juego.id}>
-                                <td>{juego.titulo}</td>
-                                <td>{juego.genero}</td>
-                                <td>{juego.plataformas.join(", ")}</td>
-                                <td>{juego.precio} €</td>
-                                <td>{juego.puntuacion}</td>
-                                <td>
-                                    <AccionesFlex>
-                                        <BotonEditar type="button"
-                                                     onClick={() => navigate(`/juegos/editar/${juego.id}`)}>
-                                            Editar
-                                        </BotonEditar>
-                                        <BotonEliminar type="button">
-                                            Eliminar
-                                        </BotonEliminar>
-                                    </AccionesFlex>
-                                </td>
+                <>
+                    <Contenedor>
+                        <ContenedorTabla>
+                            <thead>
+                            <TablaTR>
+                                <th>Título</th>
+                                <th>Género</th>
+                                <th>Plataformas</th>
+                                <th>Precio</th>
+                                <th>Puntuación</th>
+                                <th>Acciones</th>
                             </TablaTR>
-                        ))}
-                        </tbody>
-                    </ContenedorTabla>
-                </Contenedor>
+                            </thead>
+                            <tbody>
+                            {data?.results.map((juego) => (
+                                <TablaTR key={juego.id}>
+                                    <td>{juego.titulo}</td>
+                                    <td>{juego.genero}</td>
+                                    <td>{juego.plataformas.join(", ")}</td>
+                                    <td>{juego.precio} €</td>
+                                    <td>{juego.puntuacion}</td>
+                                    <td>
+                                        <AccionesFlex>
+                                            <BotonEditar type="button"
+                                                         onClick={() => navigate(`/juegos/editar/${juego.id}`)}>
+                                                Editar
+                                            </BotonEditar>
+                                            <BotonEliminar type="button">
+                                                Eliminar
+                                            </BotonEliminar>
+                                        </AccionesFlex>
+                                    </td>
+                                </TablaTR>
+                            ))}
+                            </tbody>
+                        </ContenedorTabla>
+                    </Contenedor>
+
+                    {data && (
+                        <Paginacion pagina={pagina} anterior={data.previous} siguiente={data.next}
+                                    onCambiar={Pagina}/>
+                    )}
+                </>
             )}
         </>
     );

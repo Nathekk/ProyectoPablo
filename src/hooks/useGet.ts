@@ -14,7 +14,10 @@ export function useGet<T>(url: string) {
         async function cargar() {
             try {
                 const res = await fetch(url, { signal: controller.signal });
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                if (!res.ok) {
+                    const texto = await res.text();
+                    throw new Error(`HTTP ${res.status}: ${texto}`);
+                }
                 const json: T = await res.json();
                 if (!controller.signal.aborted) setData(json);
             } catch (err) {
