@@ -7,9 +7,6 @@ import {Tabla, FilaTabla, Acciones} from "./ui/Tabla.tsx";
 const BotonAccion = styled(Boton)`
     width: 30%;
 `;
-
-//BOTONES HACER LUEGO, EDITAR Y ELIMINAR
-
 function ListaUsuarios() {
     const navigate = useNavigate();
     return (

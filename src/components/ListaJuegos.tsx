@@ -3,12 +3,13 @@ import {Link, useNavigate} from 'react-router';
 import type {RespuestaJuegos} from "../Typescript/Videojuego.ts";
 import {useGet} from "../hooks/useGet.ts"
 import {useState} from "react";
-import Cargando from "./Cargando.tsx";
+import Cargando from "./layout/Cargando.tsx";
 import Paginacion from "./Paginacion.tsx";
-import {Boton, BotonRojo} from "./ui/Boton.tsx";
+import {Boton} from "./ui/Boton.tsx";
 import {Campo} from "./ui/Campo.tsx";
 import {Centrado} from "./ui/Contenedor.tsx";
 import {Tabla, FilaTabla, Acciones} from "./ui/Tabla.tsx";
+import EliminarJuego from "./EliminarJuego.tsx";
 
 const BotonAccion = styled(Boton)`
     width: 30%;
@@ -47,8 +48,10 @@ function ListaJuegos() {
     const [paginaUrl, setPaginaUrl] = useState<string | null>(null);
     const [pagina, setPagina] = useState(1);
 
-    const urlInicial = `${URL_MONGO}/juegos/?q=${encodeURIComponent(busqueda.trim())}`;
+    const [recarga, setRecarga] = useState(0);
+    const urlInicial = `${URL_MONGO}/juegos/?q=${encodeURIComponent(busqueda.trim())}&r=${recarga}`;
     const {data, isLoading, error} = useGet<RespuestaJuegos>(paginaUrl ?? urlInicial);
+
 
     const Pagina = (url: string, nuevaPagina: number) => {
         setPaginaUrl(new URL(url, URL_MONGO).toString());
@@ -99,9 +102,12 @@ function ListaJuegos() {
                                                          onClick={() => navigate(`/juegos/editar/${juego.id}`)}>
                                                 Editar
                                             </BotonAccion>
-                                            <BotonRojo type="button">
-                                                Eliminar
-                                            </BotonRojo>
+                                            <EliminarJuego idJuego={juego.id} onEliminado={() => {
+                                                setPaginaUrl(null);
+                                                setPagina(1);
+                                                setRecarga(recarga + 1);
+                                            }}
+                                            />
                                         </Acciones>
                                     </td>
                                 </FilaTabla>

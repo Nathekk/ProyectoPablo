@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import logo from "../assets/logo.png";
+import logo from "../../assets/logo.png";
 import { Link } from "react-router";
-import { Boton } from "./ui/Boton.tsx";
+import { Boton } from "../ui/Boton.tsx";
 
 const ContenedorNav = styled.nav`
     display: flex;

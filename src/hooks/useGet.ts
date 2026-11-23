@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
 export function useGet<T>(url: string) {
     const [data, setData] = useState<T | null>(null);
@@ -13,7 +13,7 @@ export function useGet<T>(url: string) {
 
         async function cargar() {
             try {
-                const res = await fetch(url, { signal: controller.signal });
+                const res = await fetch(url, {signal: controller.signal});
                 if (!res.ok) {
                     const texto = await res.text();
                     throw new Error(`HTTP ${res.status}: ${texto}`);
@@ -27,10 +27,11 @@ export function useGet<T>(url: string) {
                 if (!controller.signal.aborted) setIsLoading(false);
             }
         }
+
         void cargar();
 
         return () => controller.abort();
     }, [url]);
 
-    return { data, isLoading, error };
+    return {data, isLoading, error};
 }

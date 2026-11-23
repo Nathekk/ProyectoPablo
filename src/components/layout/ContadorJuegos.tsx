@@ -1,9 +1,9 @@
-import {useGet} from "../hooks/useGet";
-import type {RespuestaJuegos} from "../Typescript/Videojuego";
+import {useGet} from "../../hooks/useGet.ts";
+import type {RespuestaJuegos} from "../../Typescript/Videojuego.ts";
 import styled from "@emotion/styled";
 import Cargando from "./Cargando.tsx";
-import {Tarjeta} from "./ui/Tarjeta.tsx";
-import {Centrado} from "./ui/Contenedor.tsx";
+import {Tarjeta} from "../ui/Tarjeta.tsx";
+import {Centrado} from "../ui/Contenedor.tsx";
 
 const TarjetaContador = styled(Tarjeta)`
     max-width: 300px;

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import {Link} from "react-router";
-import logo from "../assets/logo.png";
+import logo from "../../assets/logo.png";
 
 const ContenedorFooter = styled.footer`
     background-color: ${({theme}) => theme.color.blanco};

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import {Link} from "react-router";
-import {Centrado} from "./ui/Contenedor.tsx";
+import {Centrado} from "../ui/Contenedor.tsx";
 
 const Seccion = styled.section`
     width: 80%;

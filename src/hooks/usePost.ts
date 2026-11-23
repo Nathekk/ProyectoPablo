@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 
 export function usePost<T, B>(url: string) {
     const [data, setData] = useState<T | null>(null);
@@ -22,7 +22,7 @@ export function usePost<T, B>(url: string) {
         try {
             const res = await fetch(url, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body),
                 signal: controller.signal,
             });
@@ -42,5 +42,5 @@ export function usePost<T, B>(url: string) {
         }
     }
 
-    return { data, isLoading, error, post };
+    return {data, isLoading, error, post};
 }

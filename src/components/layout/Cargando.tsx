@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import iconoCarga from "../assets/carga.gif";
+import iconoCarga from "../../assets/carga.gif";
 
 const ImagenCarga = styled.img`
     width: 80px;
