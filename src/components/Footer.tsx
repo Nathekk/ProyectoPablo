@@ -3,12 +3,11 @@ import {Link} from "react-router";
 import logo from "../assets/logo.png";
 
 const ContenedorFooter = styled.footer`
-    font-family: Arial, serif;
-    background-color: white;
-    color: #444444;
-    padding: 30px 20px 20px;
-    margin-top: 40px;
-    box-shadow: 0 -3px 10px rgb(0 0 0 / 0.15);
+    background-color: ${({theme}) => theme.color.blanco};
+    color: ${({theme}) => theme.color.textoGris};
+    padding: 30px ${({theme}) => theme.espaciado.xl} ${({theme}) => theme.espaciado.xl};
+    margin-top: ${({theme}) => theme.espaciado.xxl};
+    box-shadow: ${({theme}) => theme.sombras.footer};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,7 +17,7 @@ const ContenedorFooter = styled.footer`
 const Marca = styled.div`
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: ${({theme}) => theme.espaciado.sm};
 `;
 
 const Logo = styled.img`
@@ -30,7 +29,7 @@ const Logo = styled.img`
 const NombreMarca = styled.span`
     font-size: 20px;
     font-weight: bold;
-    color: #153059;
+    color: ${({theme}) => theme.color.azulSecundario};
 `;
 
 const Enlaces = styled.nav`
@@ -41,7 +40,7 @@ const Enlaces = styled.nav`
 `;
 
 const EnlaceFooter = styled(Link)`
-    color: #2563eb;
+    color: ${({theme}) => theme.color.azul};
     text-decoration: none;
     font-size: 15px;
     padding-bottom: 2px;
@@ -49,8 +48,8 @@ const EnlaceFooter = styled(Link)`
     transition: color 0.2s, border-color 0.2s;
 
     &:hover {
-        color: #1856de;
-        border-bottom-color: #1856de;
+        color: ${({theme}) => theme.color.azulHover};
+        border-bottom-color: ${({theme}) => theme.color.azulHover};
     }
 `;
 
@@ -58,17 +57,16 @@ const Separador = styled.hr`
     width: 100%;
     max-width: 600px;
     border: none;
-    border-top: 1px solid #8d8d8d;
+    border-top: 1px solid ${({theme}) => theme.color.textoMuteado};
     margin: 0;
 `;
 
 const Descripcion = styled.p`
     margin: 0;
     font-size: 14px;
-    color: #727272;
+    color: ${({theme}) => theme.color.textoMuteado};
     text-align: center;
 `;
-
 
 function Footer() {
     return (

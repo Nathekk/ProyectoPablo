@@ -1,49 +1,41 @@
 import styled from "@emotion/styled";
 import {Link} from "react-router";
-
-const Contenedor = styled.div`
-    font-family: Arial, serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-    padding: 0 20px;
-`;
+import {Centrado} from "./ui/Contenedor.tsx";
 
 const Seccion = styled.section`
     width: 80%;
-    background-color: #2563eb;
-    color: white;
-    border-radius: 15px;
+    background-color: ${({theme}) => theme.color.azul};
+    color: ${({theme}) => theme.color.blanco};
+    border-radius: ${({theme}) => theme.radius.lg};
     padding: 45px;
     text-align: center;
 `;
 
 const Botones = styled.div`
     display: flex;
-    gap: 12px;
+    gap: ${({theme}) => theme.espaciado.md};
     justify-content: center;
 `;
 
 const BotonBase = styled(Link)`
     text-decoration: none;
-    padding: 10px 16px;
-    border-radius: 10px;
-    border: 1px solid white;
+    padding: ${({theme}) => theme.espaciado.sm} 16px;
+    border-radius: ${({theme}) => theme.radius.md};
+    border: 1px solid ${({theme}) => theme.color.blanco};
     cursor: pointer;
 `;
 
 const BotonVerJuegos = styled(BotonBase)`
-    background-color: white;
-    color: #2563eb;
+    background-color: ${({theme}) => theme.color.blanco};
+    color: ${({theme}) => theme.color.azul};
 
     &:hover {
-        background-color: #dce7f5;
+        background-color: ${({theme}) => theme.color.tablaFila};
     }
 `;
 
 const BotonLogin = styled(BotonBase)`
-    color: white;
+    color: ${({theme}) => theme.color.blanco};
 
     &:hover {
         background-color: rgb(255 255 255 / 0.15);
@@ -52,7 +44,7 @@ const BotonLogin = styled(BotonBase)`
 
 function Header() {
     return (
-        <Contenedor>
+        <Centrado>
             <Seccion>
                 <h1>Videojuegos</h1>
                 <p>Gestiona juegos y usuarios</p>
@@ -61,8 +53,7 @@ function Header() {
                     <BotonLogin to="/login">Iniciar sesión</BotonLogin>
                 </Botones>
             </Seccion>
-        </Contenedor>
-
+        </Centrado>
     );
 }
 

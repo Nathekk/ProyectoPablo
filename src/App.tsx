@@ -9,40 +9,39 @@ import Registro from "./pages/Registro.tsx";
 import ListaUsuarios from "./components/ListaUsuarios.tsx";
 import NuevoJuego from "./pages/NuevoJuego.tsx";
 
+const Pagina = styled.div`
+    background-color: ${({theme}) => theme.color.fondo};
+    font-family: ${({theme}) => theme.fuentes.body};
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+`;
+
+const Contenido = styled.main`
+    flex: 1;
+`;
+
 function App() {
-    const Pagina = styled.div`
-        background-color: #f3f5ff;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        margin: 0;
-    `;
-    const Contenido = styled.main`
-        flex: 1;
-    `;
     return (
-        <>
-            <Pagina>
-                <Navbar></Navbar>
-                <Contenido>
-                    <Routes>
-                        <Route path="/" element={<Navigate to="/inicio"/>}/>
-                        <Route path="/inicio" element={<Inicio/>}/>
-                        <Route path="/juegos" element={<ListaJuegos/>}/>
-                        <Route path="/login" element={<Login/>}/>
-                        <Route path="/registro" element={<Registro/>}/>
-                        <Route path="/juegos/addJuego" element={<NuevoJuego/>}/>
-                        {/*<Route path="/juegos/editar/:id" element={<NuevoJuego/>}/>*/}
-                        <Route path="/usuarios" element={<ListaUsuarios/>}/>
-                        {/*            <Route path="/perfil/:id" element={<Perfil/>} />
-            <Route path="*" element={<PaginaNoEncontrada />} />*/}
-                    </Routes>
-                </Contenido>
-
-                <Footer/>
-            </Pagina>
-
-        </>
+        <Pagina>
+            <Navbar/>
+            <Contenido>
+                <Routes>
+                    <Route path="/" element={<Navigate to="/inicio"/>}/>
+                    <Route path="/inicio" element={<Inicio/>}/>
+                    <Route path="/juegos" element={<ListaJuegos/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/registro" element={<Registro/>}/>
+                    <Route path="/juegos/addJuego" element={<NuevoJuego/>}/>
+                    {/*<Route path="/juegos/editar/:id" element={<NuevoJuego/>}/>*/}
+                    <Route path="/usuarios" element={<ListaUsuarios/>}/>
+                    {/*<Route path="/perfil/:id" element={<Perfil/>} />
+                    <Route path="*" element={<PaginaNoEncontrada />} />*/}
+                </Routes>
+            </Contenido>
+            <Footer/>
+        </Pagina>
     )
 }
 

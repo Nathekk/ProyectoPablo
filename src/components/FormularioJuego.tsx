@@ -2,94 +2,53 @@ import styled from "@emotion/styled";
 import type {Videojuego, CrearJuego} from "../Typescript/Videojuego.ts";
 import {useNavigate} from "react-router";
 import {type FormEvent, useState} from "react";
+import {TarjetaFormulario} from "./ui/Tarjeta.tsx";
+import {Boton, BotonBlanco} from "./ui/Boton.tsx";
+import {Titulo, MensajeError} from "./ui/Texto.tsx";
 
 const Contenedor = styled.div`
-    font-family: Arial, serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin: ${({theme}) => theme.espaciado.xxl} 0;
 `;
 
-const Formulario = styled.form`
-    background: white;
-    width: 100%;
-    max-width: 500px;
-    padding: 35px;
-    border-radius: 15px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-
+const Formulario = styled(TarjetaFormulario)`
     label {
         display: flex;
         flex-direction: column;
         gap: 6px;
         font-size: 15px;
-        color: #000000;
+        color: ${({theme}) => theme.color.texto};
         font-weight: bold;
     }
 
     input, textarea, select {
         width: 100%;
         box-sizing: border-box;
-        padding: 12px;
-        border: 1px solid #c2c2c2;
-        border-radius: 10px;
-        background-color: white;
-        color: #000000;
-        font-family: Arial, serif;
+        padding: ${({theme}) => theme.espaciado.md};
+        border: 1px solid ${({theme}) => theme.color.border};
+        border-radius: ${({theme}) => theme.radius.md};
+        background-color: ${({theme}) => theme.color.blanco};
+        color: ${({theme}) => theme.color.texto};
+        font-family: inherit;
         font-size: 15px;
     }
-`;
-
-const Titulo = styled.h1`
-    margin: 0;
-    text-align: center;
 `;
 
 const Fila = styled.div`
     display: grid;
-    gap: 15px;
+    gap: ${({theme}) => theme.espaciado.lg};
 `;
 
 const BotonesFormulario = styled.div`
     display: flex;
-    gap: 10px;
-    margin-top: 5px;
+    gap: ${({theme}) => theme.espaciado.sm};
+    margin-top: ${({theme}) => theme.espaciado.xs};
 
     button {
         flex: 1;
-        padding: 12px;
-        border-radius: 10px;
-        font-size: 15px;
-        cursor: pointer;
     }
-`;
-const BotonCancelar = styled.button`
-    background-color: white;
-    color: #727272;
-    border: 1px solid #c2c2c2;
-
-    &:hover {
-        background-color: #f5f5f5;
-    }
-`;
-const BotonGuardar = styled.button`
-    background-color: #2563eb;
-    color: white;
-    border: none;
-
-    &:hover {
-        background-color: #1d4fd8;
-    }`
-
-const MensajeError = styled.p`
-    margin: 0;
-    color: red;
-    text-align: center;
 `;
 
 interface Props {
@@ -106,7 +65,8 @@ function FormularioVideojuego({videojuegoObtenido, onGuardar, isLoading = false,
     const [titulo, setTitulo] = useState(videojuegoObtenido?.titulo ?? "");
     const [descripcion, setDescripcion] = useState(videojuegoObtenido?.descripcion ?? "");
     const [genero, setGenero] = useState(videojuegoObtenido?.genero ?? "");
-    const [plataformas, setPlataformas] = useState(videojuegoObtenido?.plataformas?.join(", ") ?? "");    const [precio, setPrecio] = useState(videojuegoObtenido?.precio?.toString() ?? "");
+    const [plataformas, setPlataformas] = useState(videojuegoObtenido?.plataformas?.join(", ") ?? "");
+    const [precio, setPrecio] = useState(videojuegoObtenido?.precio?.toString() ?? "");
     const [puntuacion, setPuntuacion] = useState(videojuegoObtenido?.puntuacion?.toString() ?? "");
     const [stock, setStock] = useState(videojuegoObtenido?.stock?.toString() ?? "");
     const [trailer, setTrailer] = useState(videojuegoObtenido?.trailer ?? "");
@@ -195,10 +155,10 @@ function FormularioVideojuego({videojuegoObtenido, onGuardar, isLoading = false,
                 </label>
                 {error && <MensajeError>Error: {error}</MensajeError>}
                 <BotonesFormulario>
-                    <BotonCancelar type="button" onClick={() => navigate("/juegos")}>Cancelar</BotonCancelar>
-                    <BotonGuardar type="submit" disabled={isLoading}>
+                    <BotonBlanco onClick={() => navigate("/juegos")}>Cancelar</BotonBlanco>
+                    <Boton type="submit" disabled={isLoading}>
                         {isLoading ? "Guardando.." : videojuegoObtenido ? "Guardar cambios" : "Añadir videojuego"}
-                    </BotonGuardar>
+                    </Boton>
                 </BotonesFormulario>
             </Formulario>
         </Contenedor>

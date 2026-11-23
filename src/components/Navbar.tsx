@@ -1,22 +1,21 @@
 import styled from "@emotion/styled";
-
 import logo from "../assets/logo.png";
 import { Link } from "react-router";
+import { Boton } from "./ui/Boton.tsx";
 
 const ContenedorNav = styled.nav`
-    font-family: Arial, serif;
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: ${({ theme }) => theme.espaciado.xl};
     align-items: center;
-    background-color: white;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.29);
+    background-color: ${({ theme }) => theme.color.blanco};
+    box-shadow: ${({ theme }) => theme.sombras.nav};
 `;
 
 const ContenedorDerecha = styled.div`
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: ${({ theme }) => theme.espaciado.xl};
 `;
 
 const Links = styled.ul`
@@ -29,10 +28,10 @@ const Links = styled.ul`
 const Enlace = styled(Link)`
     text-decoration: none;
     margin: 10px;
-    color: #444444;
+    color: ${({ theme }) => theme.color.textoGris};
 
     &:hover {
-        color: #2563eb;
+        color: ${({ theme }) => theme.color.azul};
     }
 `;
 
@@ -42,32 +41,22 @@ const Logo = styled.img`
     object-fit: contain;
 `;
 
-const Boton = styled.button`
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    padding: 10px;
+const BotonLogin = styled(Boton)`
     width: 100px;
-    border-radius: 10px;
-    text-align: center;
     font-size: 16px;
-    cursor: pointer;
-    
-    &:hover {
-        background-color: #1856de;
-    }
-    
 `;
+
 const Marca = styled(Link)`
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: ${({ theme }) => theme.espaciado.md};
     text-decoration: none;
 `;
+
 const NombreMarca = styled.span`
     font-size: 22px;
     font-weight: bold;
-    color: #153059;
+    color: ${({ theme }) => theme.color.azulSecundario};
 `;
 
 function Navbar() {
@@ -85,9 +74,7 @@ function Navbar() {
                 </Links>
 
                 <Enlace to="/login">
-                    <Boton>
-                        Login
-                    </Boton>
+                    <BotonLogin>Login</BotonLogin>
                 </Enlace>
             </ContenedorDerecha>
         </ContenedorNav>
