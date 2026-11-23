@@ -1,13 +1,14 @@
-import Navbar from "./components/Navbar.tsx";
+import Navbar from "./components/layout/Navbar.tsx";
 import {Routes, Route, Navigate} from 'react-router';
 import ListaJuegos from "./components/ListaJuegos.tsx";
 import Inicio from "./pages/Inicio.tsx";
 import Login from "./pages/Login.tsx";
-import Footer from "./components/Footer.tsx";
+import Footer from "./components/layout/Footer.tsx";
 import styled from "@emotion/styled";
 import Registro from "./pages/Registro.tsx";
 import ListaUsuarios from "./components/ListaUsuarios.tsx";
 import NuevoJuego from "./pages/NuevoJuego.tsx";
+import NotFound from "./pages/NotFound.tsx";
 
 const Pagina = styled.div`
     background-color: ${({theme}) => theme.color.fondo};
@@ -34,10 +35,9 @@ function App() {
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/registro" element={<Registro/>}/>
                     <Route path="/juegos/addJuego" element={<NuevoJuego/>}/>
-                    {/*<Route path="/juegos/editar/:id" element={<NuevoJuego/>}/>*/}
+                    {/*<Route path="/juegos/editar/:id" element={<EditarJuego/>}/>*/}
                     <Route path="/usuarios" element={<ListaUsuarios/>}/>
-                    {/*<Route path="/perfil/:id" element={<Perfil/>} />
-                    <Route path="*" element={<PaginaNoEncontrada />} />*/}
+                    <Route path="*" element={<NotFound/>} />
                 </Routes>
             </Contenido>
             <Footer/>
