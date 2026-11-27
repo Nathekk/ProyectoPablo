@@ -9,6 +9,7 @@ import Registro from "./pages/Registro.tsx";
 import ListaUsuarios from "./components/ListaUsuarios.tsx";
 import NuevoJuego from "./pages/NuevoJuego.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import EditarJuego from "./pages/EditarJuego.tsx";
 
 const Pagina = styled.div`
     background-color: ${({theme}) => theme.color.fondo};
@@ -35,7 +36,7 @@ function App() {
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/registro" element={<Registro/>}/>
                     <Route path="/juegos/addJuego" element={<NuevoJuego/>}/>
-                    {/*<Route path="/juegos/editar/:id" element={<EditarJuego/>}/>*/}
+                    <Route path="/juegos/editar/:id" element={<EditarJuego/>}/>
                     <Route path="/usuarios" element={<ListaUsuarios/>}/>
                     <Route path="*" element={<NotFound/>} />
                 </Routes>
